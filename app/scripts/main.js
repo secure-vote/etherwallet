@@ -151,7 +151,7 @@ app.controller('tabsCtrl', ['$scope', 'globalService', '$translate', '$sce', tab
 app.controller('viewCtrl', ['$scope', 'globalService', '$sce', viewCtrl]);
 app.controller('walletGenCtrl', ['$scope', walletGenCtrl]);
 app.controller('bulkGenCtrl', ['$scope', bulkGenCtrl]);
-app.controller('onboardingCtrl', ['$scope', onboardingCtrl]);
+// app.controller('onboardingCtrl', ['$scope', onboardingCtrl]);
 app.controller('decryptWalletCtrl', ['$scope', '$sce', 'walletService', decryptWalletCtrl]);
 app.controller('viewWalletCtrl', ['$scope', 'walletService', viewWalletCtrl]);
 app.controller('txStatusCtrl', ['$scope', txStatusCtrl]);
@@ -168,7 +168,7 @@ app.controller('helpersCtrl', ['$scope', helpersCtrl]);
 if (IS_CX) {
   app.controller('addWalletCtrl', ['$scope', '$sce', addWalletCtrl]);
   app.controller('myWalletsCtrl', ['$scope', '$sce', '$timeout', 'walletService', myWalletsCtrl]);
-  app.controller('mainPopCtrl', ['$scope', '$sce', mainPopCtrl]);
+  // app.controller('mainPopCtrl', ['$scope', '$sce', mainPopCtrl]);
   app.controller('quickSendCtrl', ['$scope', '$sce', 'darkList', quickSendCtrl]);
   app.controller('cxDecryptWalletCtrl', ['$scope', '$sce', 'walletService', cxDecryptWalletCtrl]);
 }

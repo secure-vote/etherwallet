@@ -56,7 +56,7 @@ var contractsCtrl = function($scope, $sce, walletService) {
         }
     }, true);
     $scope.$watch('contract.address', function(newValue, oldValue) {
-        if ($scope.Validator.isValidAddress($scope.contract.address)) {
+        if ($scope.Validator.isValidENSorEtherAddress($scope.contract.address)) {
             for (var i in ajaxReq.abiList) {
                 if (ajaxReq.abiList[i].address.toLowerCase() == $scope.contract.address.toLowerCase()) {
                     $scope.contract.abi = ajaxReq.abiList[i].abi;
@@ -177,7 +177,7 @@ var contractsCtrl = function($scope, $sce, walletService) {
     }
     $scope.initContract = function() {
         try {
-            if (!$scope.Validator.isValidAddress($scope.contract.address)) throw globalFuncs.errorMsgs[5];
+            if (!$scope.Validator.isValidENSorEtherAddress($scope.contract.address)) throw globalFuncs.errorMsgs[5];
             else if (!$scope.Validator.isJSON($scope.contract.abi)) throw globalFuncs.errorMsgs[26];
             $scope.contract.functions = [];
             var tAbi = JSON.parse($scope.contract.abi);

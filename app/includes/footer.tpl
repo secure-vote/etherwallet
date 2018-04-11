@@ -15,7 +15,10 @@
 
     <section class="footer--left">
 
-      <a href="/"><img src="images/logo-myetherwallet.svg" height="45px" width="auto" alt="Ether Wallet" class="footer--logo"/></a>
+      <a class="" href="/" aria-label="Go to homepage">
+        <h4 style="font-weight: 300; display: inline-block;">SecureVote Contracts UI <br><small>(Based on MyEtherWallet)</small></h4>
+        <p class="small visible-xs">3.21.05</p>
+      </a>
 
       <p>
         <span translate="FOOTER_1">
@@ -192,9 +195,6 @@
 
 @@if (site === 'mew' ) { @@include( './footer-disclaimer-modal.tpl',   { "site": "mew" } ) }
 @@if (site === 'cx'  ) { @@include( './footer-disclaimer-modal.tpl',   { "site": "cx"  } ) }
-
-@@if (site === 'mew' ) { @@include( './onboardingModal.tpl',   { "site": "mew" } ) }
-@@if (site === 'cx'  ) { @@include( './onboardingModal.tpl',   { "site": "cx"  } ) }
 
 
 </main>

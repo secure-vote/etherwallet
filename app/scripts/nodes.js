@@ -35,6 +35,30 @@ nodes.customNodeObj = {
     'lib': null
 };
 nodes.nodeList = {
+    'eth_sv': {
+        'name': 'ETH',
+        'blockExplorerTX': 'https://etherscan.io/tx/[[txHash]]',
+        'blockExplorerAddr': 'https://etherscan.io/address/[[address]]',
+        'type': nodes.nodeTypes.ETH,
+        'eip155': true,
+        'chainId': 1,
+        'tokenList': require('./tokens/ethTokens.json'),
+        'abiList': require('./abiDefinitions/ethAbi.json'),
+        'service': 'secure.vote',
+        'lib': new nodes.customNode('https://mainnet.eth.secure.vote:8545/contractsUI', '')
+    },
+    'kov_sv': {
+        'name': 'Kovan',
+        'type': nodes.nodeTypes.Kovan,
+        'blockExplorerTX': 'https://kovan.etherscan.io/tx/[[txHash]]',
+        'blockExplorerAddr': 'https://kovan.etherscan.io/address/[[address]]',
+        'eip155': true,
+        'chainId': 42,
+        'tokenList': require('./tokens/kovanTokens.json'),
+        'abiList': require('./abiDefinitions/kovanAbi.json'),
+        'service': 'secure.vote',
+        'lib': new nodes.customNode('https://kovan.eth.secure.vote:8545/contractsUI', '')
+    },
     'eth_mew': {
         'name': 'ETH',
         'blockExplorerTX': 'https://etherscan.io/tx/[[txHash]]',

@@ -3,23 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>MyEtherWallet.com</title>
-<meta property="og:title" content="MyEtherWallet.com: Your Key to Ethereum">
-<meta property="og:site_name" content="MyEtherWallet.com: Your Key to Ethereum">
-<meta name="twitter:title" content="MyEtherWallet.com: Your Key to Ethereum">
-<meta name="apple-mobile-web-app-title" content="MyEtherWallet.com: Your Key to Ethereum">
-<link href="https://www.myetherwallet.com" rel="canonical">
-<meta content="https://www.myetherwallet.com" property="og:url">
-<meta content="https://www.myetherwallet.com" name="twitter:url">
+<title>SV Contracts Wallet</title>
+<meta property="og:title" content="SV Contracts Wallet">
+<meta property="og:site_name" content="SV Contracts Wallet">
+<meta name="twitter:title" content="SV Contracts Wallet">
+<meta name="apple-mobile-web-app-title" content="SV Contracts Wallet">
+<link href="https://contracts.eth.secure.vote" rel="canonical">
+<meta content="https://contracts.eth.secure.vote" property="og:url">
+<meta content="https://contracts.eth.secure.vote" name="twitter:url">
 <link rel="stylesheet" href="css/etherwallet-master.min.css">
 <script type="text/javascript" src="js/etherwallet-static.min.js"></script>
 <script type="text/javascript" src="js/etherwallet-master.js"></script>
-<meta name="description" content="MyEtherWallet (MEW) is a free, open-source, client-side interface for generating Ethereum wallets & more. Interact with the Ethereum blockchain easily & securely.">
-<meta property="og:description"  content="Free, open-source, client-side Ethereum wallet. Enabling you to interact with the blockchain easily & securely.">
-<meta name="twitter:description" content="Free, open-source, client-side Ethereum wallet. Enabling you to interact with the blockchain easily & securely.">
+<meta name="description" content="SV Contracts Wallet">
+<meta property="og:description"  content="SV Contracts Wallet">
+<meta name="twitter:description" content="SV Contracts Wallet">
 <meta name="robots" content="index,follow">
 <meta name="googlebot" content="index,follow">
-<meta name="google-site-verification" content="IpChQ00NYUQuNs_7Xs6xlnSdzalOlTUYbBsr8f7OpvM" />
 <link href="images/fav/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
 <link href="images/fav/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32">
 <link href="images/fav/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16">
@@ -27,12 +26,12 @@
 <link href="images/fav/safari-pinned-tab.svg" rel="mask-icon" color="#2f99b0">
 <link href="images/fav/favicon.ico" rel="shortcut icon">
 <meta name="apple-mobile-web-app-title" content="MyEtherWallet &middot; Your Key to Ethereum">
-<meta name="application-name" content="MyEtherWallet">
+<meta name="application-name" content="SV Contracts Wallet">
 <meta name="msapplication-config" content="images/fav/browserconfig.xml">
 <meta name="theme-color" content="#1d6986">
 <meta name="apple-mobile-web-app-status-bar-style" content="#1d6986">
-<meta property="og:url" content="https://www.myetherwallet.com" />
-<meta property="og:title" content="MyEtherWallet.com  &middot; Your Key to Ethereum" />
+<meta property="og:url" content="https://contracts.eth.secure.vote" />
+<meta property="og:title" content="SV Contracts Wallet" />
 <meta property="og:type" content="website">
 <meta property="og:image" content="/images/myetherwallet-logo-banner.png" />
 <meta property="og:image" content="/images/myetherwallet-logo.png" />
@@ -48,17 +47,17 @@
 "@type" : "Organization",
 "name" : "MyEtherWallet",
 "legalName" : "MyEtherWallet Inc",
-"url" : "https://www.myetherwallet.com/",
+"url" : "https://contracts.eth.secure.vote/",
 "contactPoint" : [{
   "@type" : "ContactPoint",
   "email" : "support@myetherwallet.com",
   "url"   : "https://myetherwallet.com",
   "contactType" : "customer service"
 }],
-"logo" : "https://www.myetherwallet.com/images/myetherwallet-logo.png",
+"logo" : "https://contracts.eth.secure.vote/images/myetherwallet-logo.png",
 "description": "MyEtherWallet.com is a free, open-source, client-side interface for generating Ethereum wallets &amp; more. Interact with the Ethereum blockchain easily &amp; securely.",
 "sameAs" : [
-  "https://www.myetherwallet.com/",
+  "https://contracts.eth.secure.vote/",
   "https://chrome.google.com/webstore/detail/myetherwallet-cx/nlbmnnijcnlegkjjpcfjclmcfggfefdm",
   "https://www.facebook.com/MyEtherWallet/",
   "https://twitter.com/myetherwallet",
@@ -75,38 +74,12 @@
 
 <header class="{{curNode.name}} {{curNode.service}} {{curNode.service}} nav-index-{{gService.currentTab}}" aria-label="header" ng-controller='tabsCtrl' >
 
-@@if (site === 'mew' ) {
-  <div class="small announcement annoucement-danger">
-    <div class="container">
-      DON'T GET PHISHED, please! 🎣 Thank you! 🤗
-      <br />
-      1. BOOKMARK <a href="https://www.myetherwallet.com"> MYETHERWALLET.COM </a>
-      <span class="hidden-xs">
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        2. INSTALL <a href="https://chrome.google.com/webstore/detail/etheraddresslookup/pdknmigbbbhmllnmgdfalmedcmcefdfn" target="_blank" rel="noopener noreferrer">EAL</a>
-        or
-        <a href="https://myetherwallet.github.io/knowledge-base/migration/moving-from-private-key-to-metamask.html" target="_blank" rel="noopener noreferrer">MetaMask</a>
-        or
-        <a href="https://chrome.google.com/webstore/detail/cryptonite-by-metacert/keghdcpemohlojlglbiegihkljkgnige" target="_blank" rel="noopener noreferrer">Cryptonite</a>
-      </span>
-    </div>
-  </div>
-}
-
 <section class="bg-gradient header-branding">
   <section class="container">
-    @@if (site === 'mew' ) {
-      <a class="brand" href="/" aria-label="Go to homepage">
-        <img src="images/logo-myetherwallet.svg"   height="64px" width="245px" alt="MyEtherWallet" />
-        <p class="small visible-xs">3.21.05</p>
-      </a>
-    }
-    @@if (site === 'cx'  ) {
-      <a class="brand" href="/cx-wallet.html" aria-label="Go to homepage">
-        <img src="images/logo-myetherwalletcx.svg" height="64px" width="245px" alt="MyEtherWallet" />
-        <p class="small visible-xs">3.21.05</p>
-      </a>
-    }
+    <a class="brand" href="/" aria-label="Go to homepage">
+      <h4 style="padding: 3px 0 3px 0; font-weight: 300;">SecureVote Contracts UI <br><small>(Based on MyEtherWallet ❤️)</small></h4>
+      <p class="small visible-xs">3.21.05</p>
+    </a>
     <div class="tagline">
 
     <span class="hidden-xs">3.21.05</span>

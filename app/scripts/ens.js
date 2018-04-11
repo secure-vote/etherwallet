@@ -26,6 +26,9 @@ var ens = function() {
         case nodes.nodeTypes.Ropsten:
             _this.setCurrentRegistry(ens.registry.ROPSTEN);
             break;
+        case nodes.nodeTypes.Kovan:
+            _this.setCurrentRegistry(ens.registry.Kovan);
+            break;
         default:
             _this.setCurrentRegistry(ens.registry.NULL);
     }
@@ -34,6 +37,7 @@ ens.registry = {
     ETH: require('./ensConfigs/ETHConfig.json'),
     Rinkeby: require('./ensConfigs/RinkebyConfig.json'),
     ROPSTEN: require('./ensConfigs/ROPConfig.json'),
+    Kovan: require('./ensConfigs/KovanConfig.json'),
     NULL: {}
 };
 ens.normalise = function(name) {
