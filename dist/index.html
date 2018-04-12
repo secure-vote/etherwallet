@@ -2583,10 +2583,13 @@ Rate: {{swapOrder.swapRate}} {{swapOrder.swapPair}}</textarea>
   </div>
   <!-- / Title -->
 
-  <!-- Interact Contracts -->
-  <article class="row block" ng-show="visibility=='interactView'">
+  <div class="row">
+    <div class="col-md-9">
 
-     
+      <!-- Interact Contracts -->
+      <article class="row block" ng-show="visibility=='interactView'">
+
+         
 <!-- Address -->
 <section class="col-sm-6 clearfix">
   <div class="row">
@@ -2638,13 +2641,13 @@ Rate: {{swapOrder.swapRate}} {{swapOrder.swapPair}}</textarea>
   <button class="btn btn-primary" ng-click="initContract()" translate="x_Access"> ACCESS </button>
 </section>
  
-    
+        
 
-  </article>
+      </article>
 
-  <article class="row block" ng-show="visibility=='interactView' && showReadWrite">
+      <article class="row block" ng-show="visibility=='interactView' && showReadWrite">
 
-     <!-- STEP READ/WRITE -->
+         <!-- STEP READ/WRITE -->
 <section class="col-xs-12 clearfix">
 
   <!-- Contract Info CONTRACT_Interact_CTA -->
@@ -2900,13 +2903,13 @@ Rate: {{swapOrder.swapRate}} {{swapOrder.swapPair}}</textarea>
 
 </section>
  
-    
+        
 
-  </article>
+      </article>
 
-  <article ng-show="visibility=='interactView'">
+      <article ng-show="visibility=='interactView'">
 
-     <article class="modal fade" id="sendContract" tabindex="-1">
+         <article class="modal fade" id="sendContract" tabindex="-1">
   <section class="modal-dialog">
     <section class="modal-content">
 
@@ -2993,17 +2996,17 @@ Rate: {{swapOrder.swapRate}} {{swapOrder.swapPair}}</textarea>
 </article>
 
  
-    
+        
 
-  </article>
-  <!-- / Interact Contracts -->
+      </article>
+      <!-- / Interact Contracts -->
 
 
 
-  <!-- Deploy Contract -->
-  <article class="row block" ng-show="visibility=='deployView'">
+      <!-- Deploy Contract -->
+      <article class="row block" ng-show="visibility=='deployView'">
 
-     <section class="col-xs-12">
+         <section class="col-xs-12">
 
   <!-- Byte Code -->
   <div class="form-group">
@@ -3105,34 +3108,63 @@ Rate: {{swapOrder.swapRate}} {{swapOrder.swapPair}}</textarea>
 
 </section>
  
-    
+        
 
-  </article>
-  <!-- / Deploy Contract -->
+      </article>
+      <!-- / Deploy Contract -->
 
-  <!--wallet decrypt-->
-  <article class="form-group"
-           ng-show="(!wd && visibility=='deployView') || (!wd && visibility=='interactView' && contract.selectedFunc && !contract.functions[contract.selectedFunc.index].constant)">
-      
-        <wallet-decrypt-drtv></wallet-decrypt-drtv>         
-  </article>
+      <!--wallet decrypt-->
+      <article class="form-group"
+              ng-show="(!wd && visibility=='deployView') || (!wd && visibility=='interactView' && contract.selectedFunc && !contract.functions[contract.selectedFunc.index].constant)">
+          
+            <wallet-decrypt-drtv></wallet-decrypt-drtv>         
+      </article>
 
-  <article class="col-xs-12" ng-show="contract.selectedFunc!=null && visibility=='interactView'">
+      <article class="col-xs-12" ng-show="contract.selectedFunc!=null && visibility=='interactView'">
 
-    <button class="btn btn-primary btn-block"
-            ng-click="readFromContract()"
-            ng-show="contract.functions[contract.selectedFunc.index].constant && showRead">
-      <span translate="CONTRACT_Read"> READ </span>
-    </button>
+        <button class="btn btn-primary btn-block"
+                ng-click="readFromContract()"
+                ng-show="contract.functions[contract.selectedFunc.index].constant && showRead">
+          <span translate="CONTRACT_Read"> READ </span>
+        </button>
 
-    <button class="btn btn-primary btn-block"
-            ng-click="generateContractTx()"
-            ng-show="!contract.functions[contract.selectedFunc.index].constant">
-      <span translate="CONTRACT_Write"> WRITE </span>
-    </button>
+        <button class="btn btn-primary btn-block"
+                ng-click="generateContractTx()"
+                ng-show="!contract.functions[contract.selectedFunc.index].constant">
+          <span translate="CONTRACT_Write"> WRITE </span>
+        </button>
 
-    </br>
-  </article>
+        </br>
+      </article>
+
+    </div>
+
+    <div class="col-md-3 block">
+
+      <div>
+    <h2>
+        Utils
+    </h2>
+
+    <h4>ENS NameHash Stuff</h4>
+
+    <label>Enter ENS Name</label>
+    <input class="form-control" ng-model="utils.input.namehash">
+
+    <label>LabelHash ({{ utils.labelRaw }})</label>
+    <input class="form-control" readonly ng-value="utils.labelhash">
+
+    <label>Node ({{ utils.input.namehash }})</label>
+    <input class="form-control" readonly ng-value="utils.namehash">
+
+    <label>RootNode ({{ utils.rootnodeRaw }})</label>
+    <input class="form-control" readonly ng-value="utils.rootnode">
+</div>
+
+
+    </div>
+  </div>
+
 
 </main>
 

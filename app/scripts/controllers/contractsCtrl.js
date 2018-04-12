@@ -201,5 +201,23 @@ var contractsCtrl = function($scope, $sce, walletService) {
         $scope.tx.to = $scope.contract.address;
         $scope.sendContractModal.open();
     }
+
+    $scope.utils = {
+        input: {
+            namehash: ""
+        },
+        namehash: "0x",
+        labelhash: "0x",
+        rootnode: "0x"
+    }
+
+    $scope.$watch('utils.input.namehash', (oldVal, newVal) => {
+        var u = $scope.utils;
+        u.namehash = window.namehash.hash(u.input.namehash || '')
+        u.labelRaw = u.input.namehash.split('.')[0]
+        u.labelhash = window.web3.sha3(u.labelRaw || '')
+        u.rootnodeRaw = u.input.namehash.split('.').slice(1).join('.')
+        u.rootnode = window.namehash.hash(u.rootnodeRaw || '')
+    });
 }
 module.exports = contractsCtrl;
