@@ -84,7 +84,11 @@ var tabsCtrl = function($scope, globalService, $translate, $sce, $http, walletSe
             },
             getSafeLow: () => $scope.gas.egs.safeLow / 10 + 0.1,
             getAverage: () => $scope.gas.egs.average / 10 + 0.1,
-            getMixedAvg: () => Math.round(($scope.gas.egs.average + $scope.gas.egs.safeLow) / 2 ) / 10,
+            getMixedAvg: () => {
+                var mavg = Math.round(($scope.gas.egs.average + $scope.gas.egs.safeLow) / 2 ) / 10;
+                var lowerBound = max(mavg, $scope.gas.getSafeLow())
+                return min(lowerBound, mavg);
+            },
             getFast: () => $scope.gas.egs.fast / 10 + 0.1,
             egs: {}
         }
