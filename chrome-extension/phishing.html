@@ -128,19 +128,32 @@
           {{gas.value}} Gwei
           <input type="range" ng-model="gas.value" min="{{gas.min}}" max="{{gas.max}}" step="{{gas.step}}" ng-change="gasChanged({disableAuto: true})"/>
           <p>
-            <button ng-click="gasSetSafeLow()" class="btn btn-primary" style="padding: .3rem .5rem; font-size: 0.8rem;">
-              Set Gas to {{ gas.egs.safeLow / 10 + 0.1 }} (SafeLow)
+            <button ng-click="gasSetAutoValues()" class="btn btn-primary" style="padding: .3rem .5rem; font-size: 0.8rem;">
+              <span class="small">Set Gas to {{ gas.getGasPrice() }} ({{ gas.auto.method }})</span>
             </button>
             <label class="small">AutoUpdate Gas Price?
-              <input type="checkbox" ng-model="gas.autoUpdateGasPrice" ng-change="gasChanged()"/>
+              <input type="checkbox" ng-model="gas.auto.enabled" ng-change="gasChanged()"/>
             </label>
+            <label class="small">AutoUpdate choice:
+              <select class="" ng-model="gas.auto.method" ng-change="gasSetAutoValues()">
+                <option value="safeLow">SafeLow ({{ gas.getSafeLow() }})</option>
+                <option value="mixedAvg">Mixed Avg ({{ gas.getMixedAvg() }})</option>
+                <option value="average">Average ({{ gas.getAverage() }})</option>
+                <option value="fast">Fast ({{ gas.getFast() }})</option>
+              </select>
+            </label>
+
           </p>
         </div>
       </ul>
       <p class="dropdown-gas__msg"
          ng-hide="ajaxReq.type!='ETH'">
         <a href="https://ethgasstation.info/"
-           target="_blank" rel="noopener noreferrer">Eth Gas Station (blk: {{ gas.egs.blockNum }})</a>:
+           target="_blank" rel="noopener noreferrer">
+            Eth Gas Station
+           </a>
+           (blk: {{ gas.egs.blockNum }}, {{ gas.getUsage() }}% full)
+           <!-- <br> -->
            Low: {{ gas.egs.safeLow / 10 }} Gw ({{ gas.egs.safeLowWait }} m),
            Std: {{ gas.egs.average / 10 }} Gw ({{ gas.egs.avgWait }} m),
            Fast: {{ gas.egs.fast / 10 }} Gw ({{ gas.egs.fastWait }} m)

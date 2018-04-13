@@ -33,28 +33,58 @@ var tabsCtrl = function($scope, globalService, $translate, $sce, $http) {
     $scope.setArrowVisibility();
 
     var gasPriceKey = "gasPrice";
-    var gasAutoUpdateKey = "gasAutoUpdate";
+    var gasAutoUpdateKey = "gasAutoSettings";
     $scope.gasChanged = function(opts) {
         opts = opts || {};
-        if (opts.disableAuto || false) {
-            $scope.gas.autoUpdateGasPrice = false;
+        if (opts.disableAuto === true || false) {
+            $scope.gas.auto.enabled = false;
         }
 
+        console.log("auto settings", $scope.gas.auto)
+
         globalFuncs.localStorage.setItem(gasPriceKey, $scope.gas.value);
-        globalFuncs.localStorage.setItem(gasAutoUpdateKey, $scope.gas.autoUpdateGasPrice);
+        globalFuncs.localStorage.setItem(gasAutoUpdateKey, JSON.stringify($scope.gas.auto));
         ethFuncs.gasAdjustment = $scope.gas.value;
         $scope.gasPriceMsg = false;
     }
     var setGasValues = function() {
         var lsGasPrice = globalFuncs.localStorage.getItem(gasPriceKey, null);
-        var lsAutoUpdateGas = globalFuncs.localStorage.getItem(gasAutoUpdateKey, "true");
+        var autoDef = {enabled: true, method: "mixedAvg"};
+        var lsAuto = autoDef;
+        try {
+            var lsAuto = JSON.parse(globalFuncs.localStorage.getItem(gasAutoUpdateKey, ""));
+            if (typeof lsAuto !== "object")
+                lsAuto = autoDef;
+        } catch (e) {
+            lsAuto = autoDef;
+        }
+
         $scope.gas = {
             curVal: 0.5,
             value: lsGasPrice ? parseFloat(lsGasPrice) : 0.5,
             max: 10,
             min: 0.1,
             step: 0.1,
-            autoUpdateGasPrice: lsAutoUpdateGas ? lsAutoUpdateGas === "true" : false
+            auto: lsAuto,
+            getUsage: () => Math.round($scope.gas.egs.speed * 100),
+            getGasPrice: () => {
+                switch ($scope.gas.auto.method) {
+                    case "fast":
+                        return $scope.gas.getFast();
+                    case "average":
+                        return $scope.gas.getAverage();
+                    case "mixedAvg":
+                        return $scope.gas.getMixedAvg();
+                    case "safeLow":
+                    default:
+                        return $scope.gas.getSafeLow();
+                }
+            },
+            getSafeLow: () => $scope.gas.egs.safeLow / 10 + 0.1,
+            getAverage: () => $scope.gas.egs.average / 10 + 0.1,
+            getMixedAvg: () => Math.round(($scope.gas.egs.average + $scope.gas.egs.safeLow) / 2 ) / 10,
+            getFast: () => $scope.gas.egs.fast / 10 + 0.1,
+            egs: {}
         }
 
         var curNode = globalFuncs.localStorage.getItem('curNode', null);
@@ -65,9 +95,9 @@ var tabsCtrl = function($scope, globalService, $translate, $sce, $http) {
     setGasValues();
     $scope.gasChanged();
 
-    $scope.gasSetSafeLow = () => {
-        $scope.gas.value = $scope.gas.egs.safeLow / 10 + 0.1;
-        $scope.gas.autoUpdateGasPrice = true;
+    $scope.gasSetAutoValues = () => {
+        $scope.gas.value = $scope.gas.getGasPrice();
+        $scope.gas.auto.enabled = true;
         $scope.gasChanged();
     }
 
@@ -77,9 +107,8 @@ var tabsCtrl = function($scope, globalService, $translate, $sce, $http) {
             .then(data => {
                 console.log("from EGS", data);
                 $scope.gas.egs = data.data;
-                if ($scope.gas.autoUpdateGasPrice) {
-                    $scope.gas.value = $scope.gas.egs.safeLow / 10 + 0.1;
-                    $scope.gasChanged();
+                if ($scope.gas.auto.enabled) {
+                    $scope.gasSetAutoValues();
                 }
             })
     }
