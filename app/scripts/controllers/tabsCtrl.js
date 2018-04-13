@@ -1,5 +1,5 @@
 'use strict';
-var tabsCtrl = function($scope, globalService, $translate, $sce) {
+var tabsCtrl = function($scope, globalService, $translate, $sce, $http) {
     $scope.gService = globalService;
     $scope.tabNames = $scope.gService.tabs;
     $scope.curLang = 'English';
@@ -33,18 +33,28 @@ var tabsCtrl = function($scope, globalService, $translate, $sce) {
     $scope.setArrowVisibility();
 
     var gasPriceKey = "gasPrice";
-    $scope.gasChanged = function() {
+    var gasAutoUpdateKey = "gasAutoUpdate";
+    $scope.gasChanged = function(opts) {
+        opts = opts || {};
+        if (opts.disableAuto || false) {
+            $scope.gas.autoUpdateGasPrice = false;
+        }
+
         globalFuncs.localStorage.setItem(gasPriceKey, $scope.gas.value);
+        globalFuncs.localStorage.setItem(gasAutoUpdateKey, $scope.gas.autoUpdateGasPrice);
         ethFuncs.gasAdjustment = $scope.gas.value;
-        $scope.gasPriceMsg = ethFuncs.gasAdjustment < 41 ? true : false
+        $scope.gasPriceMsg = false;
     }
     var setGasValues = function() {
+        var lsGasPrice = globalFuncs.localStorage.getItem(gasPriceKey, null);
+        var lsAutoUpdateGas = globalFuncs.localStorage.getItem(gasAutoUpdateKey, "true");
         $scope.gas = {
             curVal: 0.5,
-            value: globalFuncs.localStorage.getItem(gasPriceKey, null) ? parseInt(globalFuncs.localStorage.getItem(gasPriceKey)) : 0.5,
+            value: lsGasPrice ? parseFloat(lsGasPrice) : 0.5,
             max: 10,
             min: 0.1,
-            step: 0.1
+            step: 0.1,
+            autoUpdateGasPrice: lsAutoUpdateGas ? lsAutoUpdateGas === "true" : false
         }
 
         var curNode = globalFuncs.localStorage.getItem('curNode', null);
@@ -54,6 +64,27 @@ var tabsCtrl = function($scope, globalService, $translate, $sce) {
     }
     setGasValues();
     $scope.gasChanged();
+
+    $scope.gasSetSafeLow = () => {
+        $scope.gas.value = $scope.gas.egs.safeLow / 10 + 0.1;
+        $scope.gas.autoUpdateGasPrice = true;
+        $scope.gasChanged();
+    }
+
+    const egsApi = "https://ethgasstation.info/json/ethgasAPI.json"
+    const getEGSData = () => {
+        $http.get(egsApi)
+            .then(data => {
+                console.log("from EGS", data);
+                $scope.gas.egs = data.data;
+                if ($scope.gas.autoUpdateGasPrice) {
+                    $scope.gas.value = $scope.gas.egs.safeLow / 10 + 0.1;
+                    $scope.gasChanged();
+                }
+            })
+    }
+    getEGSData();
+    setInterval(getEGSData, 60*1000);
 
     function makeNewNode(key) {
       var curNode;

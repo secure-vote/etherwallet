@@ -63,6 +63,26 @@ input[type="checkbox"] {
   line-height: normal;
 }
 
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 18px;
+  background: white;
+  border-radius: 3px;
+  border: 2px solid #555;
+  &::after {
+    content: " ✗";
+  }
+}
+
+input[type="checkbox"]:checked {
+  background: #abd;
+  &::after {
+    content: " ✓";
+  }
+}
+
 input[type="file"] {
   display: block;
 }

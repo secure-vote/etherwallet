@@ -126,32 +126,24 @@
         <div class="header--gas">
           <span translate="OFFLINE_Step2_Label_3">Gas Price</span>:
           {{gas.value}} Gwei
-          <input type="range" ng-model="gas.value" min="{{gas.min}}" max="{{gas.max}}" step="{{gas.step}}" ng-change="gasChanged()"/>
-          <p class="small col-xs-4 text-left"> <!--translate="GAS_Price_1"-->
-            Really, really slow
+          <input type="range" ng-model="gas.value" min="{{gas.min}}" max="{{gas.max}}" step="{{gas.step}}" ng-change="gasChanged({disableAuto: true})"/>
+          <p>
+            <button ng-click="gasSetSafeLow()" class="btn btn-primary" style="padding: .3rem .5rem; font-size: 0.8rem;">
+              Set Gas to {{ gas.egs.safeLow / 10 + 0.1 }} (SafeLow)
+            </button>
+            <label class="small">AutoUpdate Gas Price?
+              <input type="checkbox" ng-model="gas.autoUpdateGasPrice" ng-change="gasChanged()"/>
+            </label>
           </p>
-          <p class="small col-xs-4 text-center"> <!--translate="GAS_Price_2"-->
-            Maybe Fast?
-          </p>
-          <p class="small col-xs-4 text-right"> <!--translate="GAS_Price_3"-->
-            Fast
-          </p>
-          <br />
-          <p class="small" style="white-space:normal;font-weight:300;margin: 2rem 0 0;" translate="GAS_PRICE_Desc"></p>
-          <a class="small"
-             translate="x_ReadMore"
-             href="https://myetherwallet.github.io/knowledge-base/gas/what-is-gas-ethereum.html"
-             target="_blank"
-             rel="noopener noreferrer"></a>
         </div>
       </ul>
       <p class="dropdown-gas__msg"
-         ng-show="gasPriceMsg"
          ng-hide="ajaxReq.type!='ETH'">
-        The network is really full right now. Check
         <a href="https://ethgasstation.info/"
-           target="_blank" rel="noopener noreferrer">Eth Gas Station</a>
-        for gas price to use.
+           target="_blank" rel="noopener noreferrer">Eth Gas Station (blk: {{ gas.egs.blockNum }})</a>:
+           Low: {{ gas.egs.safeLow / 10 }} Gw ({{ gas.egs.safeLowWait }} m),
+           Std: {{ gas.egs.average / 10 }} Gw ({{ gas.egs.avgWait }} m),
+           Fast: {{ gas.egs.fast / 10 }} Gw ({{ gas.egs.fastWait }} m)
       </p>
     </span>
 
