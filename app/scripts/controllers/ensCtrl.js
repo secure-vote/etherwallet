@@ -2,7 +2,7 @@
 var ensCtrl = function($scope, $sce, walletService) {
     $scope.ajaxReq = ajaxReq;
     $scope.hideEnsInfoPanel = false;
-    walletService.wallet = null;
+    // walletService.wallet = null;
     $scope.Validator = Validator;
     $scope.wd = false;
     $scope.haveNotAlreadyCheckedLength = true;
@@ -55,8 +55,8 @@ var ensCtrl = function($scope, $sce, walletService) {
     var resetToDefault = function() {
         $scope.objENS = JSON.parse(JSON.stringify($scope.objENSClone));
         $scope.objSub = JSON.parse(JSON.stringify($scope.objSubClone));
-        $scope.wallet = null;
-        walletService.wallet = null;
+        // $scope.wallet = null;
+        // walletService.wallet = null;
         $scope.wd = false;
     }
     $scope.setVisibility = function(tab) {

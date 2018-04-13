@@ -1,6 +1,6 @@
 'use strict'
 var signMsgCtrl = function($scope, $sce, walletService) {
-    walletService.wallet = null;
+    // walletService.wallet = null;
     $scope.visibility = "signView";
     $scope.$watch(function() {
         if (walletService.wallet == null) return null
@@ -126,7 +126,7 @@ var signMsgCtrl = function($scope, $sce, walletService) {
                 $scope.notifier.info("Tap a touch button on your device to confirm signing.");
                 var app = new SecalotEth($scope.wallet.getHWTransport());
                 app.signMessage($scope.wallet.getPath(), thisMessage, localCallback);
-                
+
             // Sign via trezor
             } else if ((typeof hwType != "undefined") && (hwType == "trezor")) {
                 TrezorConnect.ethereumSignMessage($scope.wallet.getPath(), thisMessage, function(response) {

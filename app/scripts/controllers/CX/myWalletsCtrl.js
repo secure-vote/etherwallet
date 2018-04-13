@@ -316,7 +316,7 @@ var myWalletsCtrl = function($scope, $sce, $timeout, walletService) {
 	};
 
 	$scope.setWalletInfo = function() {
-		walletService.wallet = $scope.wallet;
+		walletService.wallet = $scope.wallet || null;
 		walletService.password = $scope.password;
 	};
 

@@ -116,6 +116,10 @@
       </ul>
     </span>
 
+    <span class="dropdown dropdown-no-arrow" ng-show="walletService.wallet !== null" ng-cloak>
+      <a class="dropdown-toggle btn btn-white" ng-click="walletService.wallet = null">Logout Wallet</a>
+    </span>
+
     <span class="dropdown dropdown-gas" ng-cloak>
       <a tabindex="0" aria-haspopup="true" aria-label="adjust gas price" class="dropdown-toggle  btn btn-white" ng-click="dropdownGasPrice = !dropdownGasPrice">
         <span translate="OFFLINE_Step2_Label_3">Gas Price</span>:

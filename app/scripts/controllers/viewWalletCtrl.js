@@ -8,8 +8,8 @@ var viewWalletCtrl = function($scope, walletService) {
     $scope.tokenVisibility = "hidden";
     $scope.pkeyVisible = false;
 
-    walletService.wallet = null;
-    walletService.password = '';
+    // walletService.wallet = null;
+    // walletService.password = '';
     $scope.ajaxReq = ajaxReq;
     $scope.$watch(function() {
         if (walletService.wallet == null) return null;

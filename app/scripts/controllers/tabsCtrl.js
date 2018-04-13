@@ -1,7 +1,9 @@
 'use strict';
-var tabsCtrl = function($scope, globalService, $translate, $sce, $http) {
+var tabsCtrl = function($scope, globalService, $translate, $sce, $http, walletService) {
     $scope.gService = globalService;
     $scope.tabNames = $scope.gService.tabs;
+    $scope.walletService = walletService;
+    $scope.log = thing => console.log(thing);
     $scope.curLang = 'English';
     $scope.customNodeModal = document.getElementById('customNodeModal') ? new Modal(document.getElementById('customNodeModal')) : null;
     $scope.Validator = Validator;
