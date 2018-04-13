@@ -52,8 +52,8 @@ var tabsCtrl = function($scope, globalService, $translate, $sce, $http) {
         var autoDef = {enabled: true, method: "mixedAvg"};
         var lsAuto = autoDef;
         try {
-            var lsAuto = JSON.parse(globalFuncs.localStorage.getItem(gasAutoUpdateKey, ""));
-            if (typeof lsAuto !== "object")
+            var lsAuto = JSON.parse(globalFuncs.localStorage.getItem(gasAutoUpdateKey));
+            if (lsAuto === null || typeof lsAuto !== "object")
                 lsAuto = autoDef;
         } catch (e) {
             lsAuto = autoDef;
