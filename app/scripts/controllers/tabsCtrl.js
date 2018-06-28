@@ -1,4 +1,8 @@
 'use strict';
+
+const max = (a, b) => a > b ? a : b;
+const min = (a, b) => a < b ? a : b;
+
 var tabsCtrl = function($scope, globalService, $translate, $sce, $http, walletService) {
     $scope.gService = globalService;
     $scope.tabNames = $scope.gService.tabs;

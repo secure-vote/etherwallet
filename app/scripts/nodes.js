@@ -45,7 +45,7 @@ nodes.nodeList = {
         'tokenList': require('./tokens/ethTokens.json'),
         'abiList': require('./abiDefinitions/ethAbi.json'),
         'service': 'secure.vote',
-        'lib': new nodes.customNode('https://mainnet.eth.secure.vote:8545/contractsUI', '')
+        'lib': new nodes.customNode('https://mainnet.eth.secure.vote/contractsUI', '')
     },
     'kov_sv': {
         'name': 'Kovan',
@@ -57,7 +57,7 @@ nodes.nodeList = {
         'tokenList': require('./tokens/kovanTokens.json'),
         'abiList': require('./abiDefinitions/kovanAbi.json'),
         'service': 'secure.vote',
-        'lib': new nodes.customNode('https://kovan.eth.secure.vote:8545/contractsUI', '')
+        'lib': new nodes.customNode('https://kovan.eth.secure.vote/contractsUI', '')
     },
     'eth_mew': {
         'name': 'ETH',
